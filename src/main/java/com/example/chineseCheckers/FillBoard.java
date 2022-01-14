@@ -13,7 +13,6 @@ public class FillBoard {
     private static int x;
     private static Circle circle;
 
-
     protected static void FillColor(String color, GridPane pane) {
         switch (color) {
             case "YELLOW" -> fillYellow(pane);
@@ -96,7 +95,7 @@ public class FillBoard {
                 for (Node node : pane.getChildren()) {
                     if (GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y) {
                         circle = (Circle) node;
-                        circle.setFill(Color.WHITE);
+                        circle.setFill(Color.BLACK);
                         break;
                     }
                 }

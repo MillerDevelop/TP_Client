@@ -1,6 +1,7 @@
 package com.example.chineseCheckers;
 
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -30,9 +31,19 @@ public class SceneContentHandler {
         box.setManaged(false);
     }
 
-    protected static void SetBoxUnVisible(Parent parent){
+    protected static void SetBoxUnVisible(Parent parent) {
         parent.setVisible(false);
         parent.setManaged(false);
+    }
+
+    protected static void SetLabelVisible(Label label) {
+        label.setManaged(true);
+        label.setVisible(true);
+    }
+
+    protected static void SetLabelUnVisible(Label label) {
+        label.setManaged(false);
+        label.setVisible(false);
     }
 
 }

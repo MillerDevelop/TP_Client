@@ -20,7 +20,7 @@
             <Font name="Baskerville Old Face" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="choosePlayersLabel" managed="false" visible="false" prefHeight="11.0" prefWidth="156.0" text="Choose the number of players">
+      <Label fx:id="choosePlayersLabel" managed="false" prefHeight="11.0" prefWidth="156.0" text="Choose the number of players" visible="false">
          <padding>
             <Insets bottom="20.0" />
          </padding>
@@ -28,9 +28,9 @@
             <Font name="Baskerville Old Face" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="chooseColorLabel" managed="false" text="Choose your team`s color">
+      <Label fx:id="chooseColorLabel" managed="false" text="Choose your team`s color" visible="false">
          <font>
-            <Font name="Baskerville Old Face" size="12.0" />
+            <Font name="Baskerville Old Face" size="18.0" />
          </font></Label>
       <VBox fx:id="greetings" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="9.0" visible="true">
          <children>
@@ -52,20 +52,30 @@
          <Button mnemonicParsing="false" onMouseClicked="#playerCountClicked" text="6 players" />
       </VBox>
       <VBox fx:id="chooseColor" alignment="CENTER" managed="false" spacing="5.0" visible="false">
-         <Button mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="RED" />
-         <Button mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="GREEN" />
-         <Button mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="YELLOW" />
-         <Button mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="BLACK" />
-         <Button mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="BLUE" />
-         <Button mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="WHITE" />
+         <Button fx:id="REDcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="RED" />
+         <Button fx:id="GREENcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="GREEN" />
+         <Button fx:id="YELLOWcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="YELLOW" />
+         <Button fx:id="BLACKcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="BLACK" />
+         <Button fx:id="BLUEcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="BLUE" />
+         <Button fx:id="WHITEcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="WHITE" />
       </VBox>
       <VBox fx:id="connectServer" alignment="CENTER" managed="false" prefHeight="200.0" prefWidth="100.0" spacing="5.0" visible="false">
          <children>
             <Label text="Enter IP and Port of the Server" />
-            <Label fx:id="errorMessage" text="Wrong input! Try again!" textFill="#a74343" visible="false">
+            <Label fx:id="connectionErrorLabel" text="Wrong input! Try again!" textFill="#a74343" visible="false" managed="false">
                <VBox.margin>
                   <Insets bottom="2.0" />
                </VBox.margin></Label>
+            <Label fx:id="createErrorLabel" textFill="#a74343" visible="false" managed="false" text="Room already created" >
+               <font>
+                  <Font name="System" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="joinErrorLabel" textFill="#a74343" managed="false" visible="false" text="Unable to join. Room is not created" >
+               <font>
+                  <Font name="System" size="13.0" />
+               </font>
+            </Label>
             <TextField fx:id="IpField" alignment="CENTER" maxWidth="-Infinity" promptText="IP" />
             <TextField fx:id="PortField" alignment="CENTER" maxWidth="-Infinity" promptText="Port" />
             <Button fx:id="connectServerClicked" mnemonicParsing="false" onMouseClicked="#connectServerClicked" text="Connect">
@@ -81,12 +91,12 @@
             <Insets />
          </VBox.margin>
       </VBox>
-      <AnchorPane fx:id="playGame" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="850.0" style="-fx-background-color: FAF0E6;" visible="false" managed="false">
+      <AnchorPane fx:id="playGame" managed="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="850.0" style="-fx-background-color: FAF0E6;" visible="false">
          <children>
             <HBox alignment="CENTER" layoutY="759.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="26.0" prefWidth="850.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Button mnemonicParsing="false" text="SKIP STEP" />
-                  <Button mnemonicParsing="false" text="EXIT" />
+                  <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="SKIP STEP" />
+                  <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="EXIT" />
                   <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="FINISH STEP" />
                </children>
             </HBox>
@@ -261,7 +271,7 @@
                   <Circle fill="#a6abaf" onMouseClicked="#gameBoardClicked" radius="15.0" stroke="#2e2e2ed6" GridPane.columnIndex="15" GridPane.rowIndex="11" />
                </children>
             </GridPane>
-            <Label fx:id="YourColorLabel" layoutX="21.0" layoutY="17.0" prefHeight="18.0" prefWidth="160.0" text="YOUR COLOR: COLOR" />
+            <Label fx:id="yourColorLabel" layoutX="21.0" layoutY="17.0" prefHeight="18.0" prefWidth="160.0" text="YOUR COLOR: COLOR" />
          </children>
       </AnchorPane>
 

@@ -15,7 +15,7 @@ public class CMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CMain.class.getResource("GameMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CMain.class.getResource("GameGUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Chinese checkers");
         stage.setScene(scene);

@@ -3,8 +3,6 @@ package com.example.chineseCheckers;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Locale;
-import java.util.Scanner;
 import java.util.concurrent.Executors;
 
 //Sever used just to echo the information sent!!!
@@ -45,8 +43,20 @@ public class TestServer {
                 while (socket.isConnected()) {
                     line = bufferedReader.readLine();
                     System.out.println(line);
-                    sendMessage(line);
-                    sendMessage(line);
+                    if (line.contains("FINISH")) {
+                        sendMessage("FINISH TURN");
+                    } else if (line.contains("CREATE")) {
+                        sendMessage("CREATE BAD");
+                    }else if (line.contains("JOIN")) {
+                        sendMessage("JOIN OK");
+                        sendMessage("PLAYERS");
+                        sendMessage("COLOR WHITE");
+                    }
+                    else {
+                        sendMessage(line);
+                    }
+
+
                 }
               }catch (IOException e) {
                   System.out.println("Error:" + socket);
