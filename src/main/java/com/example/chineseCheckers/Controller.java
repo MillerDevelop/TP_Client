@@ -1,5 +1,6 @@
 package com.example.chineseCheckers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -25,7 +27,7 @@ public class Controller {
     //later change to int, using String because running server on a local machine
     private static String Ip;
     private static int port;
-    private static boolean connectionError, createError, joinError, finishTurn, yourTurn, twoPlayers= false;
+    private static boolean connectionError, createError, joinError, finishTurn, yourTurn, twoPlayers, stepMade= false;
     private int greetingsChoice;
     private Color myColor;
     private final HashMap<String, Button> colorMap = new HashMap<>();
@@ -38,10 +40,13 @@ public class Controller {
     private Button button, REDcolorChoice, YELLOWcolorChoice, BLACKcolorChoice, WHITEcolorChoice, BLUEcolorChoice, GREENcolorChoice;
 
     @FXML
-    private Label choosePlayersLabel, connectionErrorLabel, createErrorLabel, joinErrorLabel, chooseColorLabel, welcomeLabel, yourColorLabel;
+    private Label choosePlayersLabel, connectionErrorLabel, createErrorLabel, joinErrorLabel, ColorLabel, welcomeLabel, yourColorLabel, youWonLabel, youLostLabel;
 
     @FXML
-    private VBox playerCount, greetings, chooseColor, connectServer, parentBox;
+    private VBox playerCount, chooseColor, connectServer, gameResults;
+
+    @FXML
+    private HBox buttonBoardBox;
 
     @FXML
     private AnchorPane playGame;
@@ -65,7 +70,7 @@ public class Controller {
                     MoveBoard.HidePreviousAvailibleMoves(board);
                 }
                 startPoint = new Point2D(GridPane.getColumnIndex((Node) event.getTarget()), GridPane.getRowIndex((Node) event.getTarget()));
-                MoveBoard.ShowAvailibleMoves(startPoint, board);
+                MoveBoard.ShowAllAvailibleMoves(startPoint, board);
 
             } else if (circle.getFill().equals(Color.web("#d7dcdf"))) {
                 endPoint = new Point2D(GridPane.getColumnIndex((Node) event.getTarget()), GridPane.getRowIndex((Node) event.getTarget()));
@@ -80,7 +85,6 @@ public class Controller {
             alertMessage.setContentText("You have already made your steps. Please click 'FINISH MOVE' button.");
             alertMessage.showAndWait();
         } else if (!yourTurn){
-            System.out.println("I`m here notyourturn");
             alertMessage = new Alert(Alert.AlertType.ERROR);
             alertMessage.setTitle("Not Your Turn");
             alertMessage.setHeaderText("Please wait for your turn");
@@ -94,7 +98,31 @@ public class Controller {
 
     protected void buttonBoardMouseClicked(MouseEvent event) {
         button = (Button) event.getSource();
+        switch (button.getText()) {
+            case "EXIT" :
+                client.sendMessageToServer("EXIT");
+                client.CloseEverything();
+                Platform.exit();
+                break;
+            case "FINISH STEP" :
+                client.sendMessageToServer("FINISH");
+                MoveBoard.setHopped(false);
+                buttonBoardBox.setDisable(true);
+                break;
+            case "SKIP STEP" :
+                if (!stepMade) {
+                    client.sendMessageToServer("SKIP");
+                    buttonBoardBox.setDisable(true);
+                }
 
+        }
+
+    }
+
+    @FXML
+
+    protected void resultClicked(MouseEvent event) {
+        Platform.exit();
     }
 
     //finish with enabling labeles
@@ -125,12 +153,16 @@ public class Controller {
     protected void chooseColorClicked(MouseEvent event) {
         button = (Button) event.getSource();
         myColor = Color.web(button.getText());
+        yourColorLabel.setText("YOUR COLOR: " + button.getText());
+        SceneContentHandler.SetLabelUnVisible(ColorLabel);
+        SceneContentHandler.SetLabelUnVisible(welcomeLabel);
         SceneContentHandler.SetBoxUnVisible(button.getParent());
-        welcomeLabel.setVisible(false);
-        welcomeLabel.setManaged(false);
+        for (String s : colorMap.keySet()) {
+            colorMap.get(s).setVisible(false);
+            colorMap.get(s).setManaged(false);
+        }
         SceneContentHandler.SetBoxVisible(playGame);
         client.sendMessageToServer("COLOR " + button.getText());
-        yourColorLabel.setText("YOUR COLOR: " + button.getText());
     }
 
     @FXML
@@ -193,9 +225,7 @@ public class Controller {
                     if (joinError) {
                         SceneContentHandler.SetLabelUnVisible(joinErrorLabel);
                     }
-                    SceneContentHandler.SetBoxUnVisible(connectServer);
-                    SceneContentHandler.SetBoxVisible(chooseColor);
-                    SceneContentHandler.SetLabelVisible(chooseColorLabel);
+                    SceneContentHandler.SetLabelVisible(ColorLabel);
                 }
                 case "JOIN BAD" -> {
                     joinError = true;
@@ -206,7 +236,7 @@ public class Controller {
         else if (message.contains("COLOR")) {
 
             //disable color after chosen
-            //if two players : disable all colors except one opposite to the sent
+            //if two players : disable all colors except one opposite to the one sent.
 
             String[] color = message.split(" ");
             FillBoard.FillColor(color[1], board);
@@ -229,6 +259,10 @@ public class Controller {
                 }
             }
 
+            if (greetingsChoice == 2) {
+                SceneContentHandler.SetBoxUnVisible(connectServer);
+                SceneContentHandler.SetBoxVisible(chooseColor);
+            }
         }
         else if (message.contains("2 PLAYERS")) {
             twoPlayers = true;
@@ -254,25 +288,34 @@ public class Controller {
         }
         else if (message.contains("TURN")) {
             switch (message) {
-                case "YOUR TURN" -> yourTurn = true;
+                case "YOUR TURN" -> {yourTurn = true;
+                                    buttonBoardBox.setDisable(false);}
                 case "NOT YOUR TURN" -> yourTurn = false;
+                //disable buttons;
+                //if step made and you know the player can`t make more moves
                 case "FINISH TURN" -> finishTurn = true;
             }
+        } else if (message.contains("DELETE")) {
+            String [] remove = message.split(" ");
+            EmptyBoard.EmptyPlayerBoard(Color.web(remove[1]), board);
         }
         else if (message.contains("YOU")) {
+            client.CloseEverything();
+            SceneContentHandler.SetBoxUnVisible(playGame);
+            SceneContentHandler.SetBoxVisible(gameResults);
+
               switch (message) {
                   case "YOU WON":
-                      //winning message and disconection. Enter main menu.
+                      SceneContentHandler.SetLabelVisible(youWonLabel);
                       break;
                   case "YOU LOST":
-                      //loosing message and disconnection. Enter main menu.
+                      SceneContentHandler.SetLabelVisible(youLostLabel);
+                      //loosing box and disconnection.
                       break;
               }
 
         }
-        else if (message.contains("REMOVE")) {
 
-        }
 
         //if needed more leave comment
         //currently thinking about making one scene instead of two. If there are two scenes getting some trouble with sending content.

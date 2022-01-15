@@ -15,8 +15,13 @@ public class MoveBoard {
     private static Circle circle;
     private static final Color availible= Color.web("#d7dcdf");
     private static final Color notTaken = Color.web("#a6abaf");
+    private static boolean hopped = false;
 
-    protected static void ShowAvailibleMoves(Point2D startPoint, GridPane pane) {
+    protected static void setHopped (boolean bool) {
+        hopped = bool;
+    }
+
+    protected static void ShowAllAvailibleMoves(Point2D startPoint, GridPane pane) {
 
         startPointX = startPoint.getX();
         startPointY = startPoint.getY();
@@ -26,10 +31,12 @@ public class MoveBoard {
                 if (GridPane.getColumnIndex(node) == startPointX + Xmove[i] && GridPane.getRowIndex(node) == startPointY + Ymove[i]){
                     circle = (Circle) node;
 
+
                     if (circle.getFill().equals(notTaken)) {
-                        circle.setFill(availible);
-                        System.out.println(circle.getFill().toString());
-                        circle.setStrokeWidth(2);
+                        if (!hopped) {
+                            circle.setFill(availible);
+                            circle.setStrokeWidth(2);
+                        }
                     }
                     else {
                         if (Ymove [i] != 0) {
@@ -39,6 +46,7 @@ public class MoveBoard {
                                     if (circle.getFill().equals(notTaken)) {
                                         circle.setFill(availible);
                                         circle.setStrokeWidth(2);
+                                        hopped = true;
                                     }
                                 }
                             }
@@ -49,6 +57,7 @@ public class MoveBoard {
                                 if (circle.getFill().equals(notTaken)) {
                                     circle.setFill(availible);
                                     circle.setStrokeWidth(2);
+                                    hopped = true;
                                 }
                             }
                         }
@@ -66,9 +75,7 @@ public class MoveBoard {
                     circle = (Circle) node;
 
                     if (circle.getFill().equals(availible)) {
-                        System.out.println("I`m here");
                         circle.setFill(notTaken);
-                        System.out.println(circle.getFill().toString());
                         circle.setStrokeWidth(1);
                     }
                     else {
@@ -100,23 +107,20 @@ public class MoveBoard {
 
     protected static void RedrawBoardMove(Point2D startPoint, Point2D endPoint, GridPane pane, Color playerColor) {
 
-        for (int i = 0; i <= 1; i++) {
             for (Node node : pane.getChildren()) {
-                if (i == 0) {
+
                     if (GridPane.getColumnIndex(node) == startPoint.getX() && GridPane.getRowIndex(node) == startPoint.getY()) {
                         circle = (Circle) node;
                         circle.setFill(notTaken);
                     }
-                }
-                else {
-                    if (GridPane.getColumnIndex(node) == endPoint.getX() && GridPane.getRowIndex(node) == endPoint.getY()) {
+                    else if (GridPane.getColumnIndex(node) == endPoint.getX() && GridPane.getRowIndex(node) == endPoint.getY()) {
                         circle = (Circle) node;
                         circle.setFill(playerColor);
                     }
                 }
             }
-        }
-    }
+
+
 
 
 

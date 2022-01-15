@@ -17,7 +17,7 @@ public class Client {
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         }catch (IOException e){
             System.out.println("Error creating client");
-            CloseEverything(socket, bufferedWriter, bufferedReader);
+            CloseEverything();
         }
 
         try {
@@ -49,7 +49,7 @@ public class Client {
                             String messageFromServer = bufferedReader.readLine();
                             controller.CheckServerMsg(messageFromServer);
                         }catch (IOException e) {
-                            e.printStackTrace();
+                            break;
                         }
                     }
                 }
@@ -57,7 +57,7 @@ public class Client {
             }).start();
     }
 
-    protected void CloseEverything(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader){
+    protected void CloseEverything(){
         try {
             if(socket != null) {
                 socket.close();

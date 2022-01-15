@@ -49,8 +49,11 @@ public class TestServer {
                         sendMessage("CREATE BAD");
                     }else if (line.contains("JOIN")) {
                         sendMessage("JOIN OK");
-                        sendMessage("PLAYERS");
+                        sendMessage("2 PLAYERS");
                         sendMessage("COLOR WHITE");
+                    } else if (line.contains("MOVE")) {
+                        sendMessage("MOVE OK");
+                        sendMessage("STEP 0 12 17 5 WHITE");
                     }
                     else {
                         sendMessage(line);

@@ -19,6 +19,7 @@ public class CMain extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Chinese checkers");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);

@@ -28,10 +28,6 @@
             <Font name="Baskerville Old Face" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="chooseColorLabel" managed="false" text="Choose your team`s color" visible="false">
-         <font>
-            <Font name="Baskerville Old Face" size="18.0" />
-         </font></Label>
       <VBox fx:id="greetings" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="9.0" visible="true">
          <children>
       
@@ -52,6 +48,7 @@
          <Button mnemonicParsing="false" onMouseClicked="#playerCountClicked" text="6 players" />
       </VBox>
       <VBox fx:id="chooseColor" alignment="CENTER" managed="false" spacing="5.0" visible="false">
+         <Label fx:id="ColorLabel" alignment="CENTER" managed="false" minHeight="-Infinity" minWidth="-Infinity" text="Choose your team`s color" visible="false" />
          <Button fx:id="REDcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="RED" />
          <Button fx:id="GREENcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="GREEN" />
          <Button fx:id="YELLOWcolorChoice" mnemonicParsing="false" onMouseClicked="#chooseColorClicked" text="YELLOW" />
@@ -62,16 +59,16 @@
       <VBox fx:id="connectServer" alignment="CENTER" managed="false" prefHeight="200.0" prefWidth="100.0" spacing="5.0" visible="false">
          <children>
             <Label text="Enter IP and Port of the Server" />
-            <Label fx:id="connectionErrorLabel" text="Wrong input! Try again!" textFill="#a74343" visible="false" managed="false">
+            <Label fx:id="connectionErrorLabel" managed="false" text="Wrong input! Try again!" textFill="#a74343" visible="false">
                <VBox.margin>
                   <Insets bottom="2.0" />
                </VBox.margin></Label>
-            <Label fx:id="createErrorLabel" textFill="#a74343" visible="false" managed="false" text="Room already created" >
+            <Label fx:id="createErrorLabel" managed="false" text="Room already created" textFill="#a74343" visible="false">
                <font>
                   <Font name="System" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="joinErrorLabel" textFill="#a74343" managed="false" visible="false" text="Unable to join. Room is not created" >
+            <Label fx:id="joinErrorLabel" managed="false" text="Unable to join. Room is not created" textFill="#a74343" visible="false">
                <font>
                   <Font name="System" size="13.0" />
                </font>
@@ -91,9 +88,9 @@
             <Insets />
          </VBox.margin>
       </VBox>
-      <AnchorPane fx:id="playGame" managed="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="850.0" style="-fx-background-color: FAF0E6;" visible="false">
+      <AnchorPane fx:id="playGame" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" style="-fx-background-color: FAF0E6;" visible="false">
          <children>
-            <HBox alignment="CENTER" layoutY="759.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="26.0" prefWidth="850.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <HBox fx:id="buttonBoardBox" alignment="CENTER" layoutY="759.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="26.0" prefWidth="850.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="SKIP STEP" />
                   <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="EXIT" />
@@ -274,6 +271,21 @@
             <Label fx:id="yourColorLabel" layoutX="21.0" layoutY="17.0" prefHeight="18.0" prefWidth="160.0" text="YOUR COLOR: COLOR" />
          </children>
       </AnchorPane>
+      <VBox fx:id="gameResults" alignment="CENTER" managed="false" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false">
+         <children>
+            <Label fx:id="youWonLabel" managed="false" text="CONGRATULATIONS! YOU WON!" visible="false">
+               <font>
+                  <Font name="Arial Narrow" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="youLostLabel" managed="false" text="WE`RE SORRY! YOU LOST!" visible="false">
+               <font>
+                  <Font name="Arial Narrow" size="16.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onMouseClicked="#resultClicked" text="EXIT" />
+         </children>
+      </VBox>
 
 
 
