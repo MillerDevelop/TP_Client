@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/demo.iml" filepath="$PROJECT_DIR$/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TP_Chinese_Checkers-main/ChineseCheckersServer.iml" filepath="$PROJECT_DIR$/../TP_Chinese_Checkers-main/ChineseCheckersServer.iml" />
     </modules>
   </component>
 </project>

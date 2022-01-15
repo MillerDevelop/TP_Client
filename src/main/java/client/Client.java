@@ -1,4 +1,4 @@
-package com.example.chineseCheckers;
+package client;
 
 import java.io.*;
 import java.net.Socket;
@@ -41,19 +41,15 @@ public class Client {
     }
 
     protected void recieveMessageFromServer(){
-            new Thread (new Runnable() {
-                @Override
-                public void run() {
-                    while (socket.isConnected()){
-                        try {
-                            String messageFromServer = bufferedReader.readLine();
-                            controller.CheckServerMsg(messageFromServer);
-                        }catch (IOException e) {
-                            break;
-                        }
+            new Thread (() -> {
+                while (socket.isConnected()){
+                    try {
+                        String messageFromServer = bufferedReader.readLine();
+                        controller.CheckServerMsg(messageFromServer);
+                    }catch (IOException e) {
+                        break;
                     }
                 }
-
             }).start();
     }
 

@@ -1,4 +1,4 @@
-package com.example.chineseCheckers;
+package client;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -40,7 +40,7 @@ public class Controller {
     private Button button, REDcolorChoice, YELLOWcolorChoice, BLACKcolorChoice, WHITEcolorChoice, BLUEcolorChoice, GREENcolorChoice;
 
     @FXML
-    private Label choosePlayersLabel, connectionErrorLabel, createErrorLabel, joinErrorLabel, ColorLabel, welcomeLabel, yourColorLabel, youWonLabel, youLostLabel;
+    private Label choosePlayersLabel, connectionErrorLabel, createErrorLabel, joinErrorLabel, ColorLabel, welcomeLabel, yourColorLabel, waitingForPlayersLabel, youWonLabel, youLostLabel;
 
     @FXML
     private VBox playerCount, chooseColor, connectServer, gameResults;
@@ -59,18 +59,39 @@ public class Controller {
 
     private Client client;
 
+    //FINISH CREATE SO THAT BUTTON WONT BE SEEN
+    //WRITE LOGIC FOR NOT GOING BACK ON THE SAME
+    //BLOCK OTHER STARTPOINTS WHEN STEP MADE
+    //SHOWING ONLY HOPS AFTER CLICKING FEW POINTS
+    //HIDE AVAILIBLE STEPS WHEN CLICKED ON OTHER POINT NOT YOUR COLOR
+
     @FXML
     protected void gameBoardClicked(MouseEvent event) {
         Circle circle = (Circle) event.getSource();
 
-        if (yourTurn) {
+        if (finishTurn) {
+            alertMessage = new Alert(Alert.AlertType.WARNING);
+            alertMessage.setTitle("Finish Your Move");
+            alertMessage.setHeaderText("Please finish your move");
+            alertMessage.setContentText("You have already made your steps. Please click 'FINISH MOVE' button.");
+            alertMessage.showAndWait();
+        } else if (yourTurn) {
 
             if (circle.getFill().equals(myColor)) {
                 if (startPoint != null) {
                     MoveBoard.HidePreviousAvailibleMoves(board);
                 }
-                startPoint = new Point2D(GridPane.getColumnIndex((Node) event.getTarget()), GridPane.getRowIndex((Node) event.getTarget()));
-                MoveBoard.ShowAllAvailibleMoves(startPoint, board);
+                if (!stepMade) {
+                    startPoint = new Point2D(GridPane.getColumnIndex((Node) event.getTarget()), GridPane.getRowIndex((Node) event.getTarget()));
+                    MoveBoard.ShowAllAvailibleMoves(startPoint, board);
+                } else {
+                    startPoint = endPoint;
+                    if (GridPane.getColumnIndex((Node)event.getTarget()) == startPoint.getX() && GridPane.getRowIndex((Node) event.getTarget()) == startPoint.getY()) {
+                        MoveBoard.ShowAllAvailibleMoves(startPoint, board);
+                    }
+                }
+
+
 
             } else if (circle.getFill().equals(Color.web("#d7dcdf"))) {
                 endPoint = new Point2D(GridPane.getColumnIndex((Node) event.getTarget()), GridPane.getRowIndex((Node) event.getTarget()));
@@ -78,12 +99,6 @@ public class Controller {
                 client.sendMessageToServer("MOVE " + (int) startPoint.getX() + " " + (int) startPoint.getY() + " " + (int) endPoint.getX() + " " + (int) endPoint.getY());
             }
 
-        } else if (finishTurn) {
-            alertMessage = new Alert(Alert.AlertType.WARNING);
-            alertMessage.setTitle("Finish Your Move");
-            alertMessage.setHeaderText("Please finish your move");
-            alertMessage.setContentText("You have already made your steps. Please click 'FINISH MOVE' button.");
-            alertMessage.showAndWait();
         } else if (!yourTurn){
             alertMessage = new Alert(Alert.AlertType.ERROR);
             alertMessage.setTitle("Not Your Turn");
@@ -106,13 +121,23 @@ public class Controller {
                 break;
             case "FINISH STEP" :
                 client.sendMessageToServer("FINISH");
-                MoveBoard.setHopped(false);
+                MoveBoard.setHoppedFalse();
                 buttonBoardBox.setDisable(true);
+                MoveBoard.HidePreviousAvailibleMoves(board);
+                MoveBoard.setTempPointNull();
+                finishTurn = false;
+                stepMade = false;
                 break;
             case "SKIP STEP" :
                 if (!stepMade) {
-                    client.sendMessageToServer("SKIP");
+                    client.sendMessageToServer("FINISH");
                     buttonBoardBox.setDisable(true);
+                } else {
+                    alertMessage = new Alert(Alert.AlertType.WARNING);
+                    alertMessage.setTitle("Cant`t Skip Step");
+                    alertMessage.setHeaderText("Moves Made");
+                    alertMessage.setContentText("You have already made steps so click 'FINISH STEP'");
+                    alertMessage.showAndWait();
                 }
 
         }
@@ -121,7 +146,7 @@ public class Controller {
 
     @FXML
 
-    protected void resultClicked(MouseEvent event) {
+    protected void resultClicked() {
         Platform.exit();
     }
 
@@ -133,7 +158,6 @@ public class Controller {
         if (colorMap.isEmpty()) {
             fillHashMap();
         }
-        colorMap.get("RED").setVisible(false);
 
         switch (button.getId()) {
             case "Create" -> {
@@ -157,6 +181,7 @@ public class Controller {
         SceneContentHandler.SetLabelUnVisible(ColorLabel);
         SceneContentHandler.SetLabelUnVisible(welcomeLabel);
         SceneContentHandler.SetBoxUnVisible(button.getParent());
+        SceneContentHandler.SetBoxUnVisible(ColorLabel);
         for (String s : colorMap.keySet()) {
             colorMap.get(s).setVisible(false);
             colorMap.get(s).setManaged(false);
@@ -197,7 +222,9 @@ public class Controller {
         }
         client.sendMessageToServer(button.getText().toUpperCase());
         SceneContentHandler.SetBoxUnVisible(button.getParent());
+        SceneContentHandler.SetLabelUnVisible(choosePlayersLabel);
         SceneContentHandler.SetBoxVisible(chooseColor);
+        SceneContentHandler.SetLabelVisible(ColorLabel);
     }
 
 
@@ -267,15 +294,21 @@ public class Controller {
         else if (message.contains("2 PLAYERS")) {
             twoPlayers = true;
         }
-        else if (message == "GAME STARTED") {
+        else if (message.equals("GAME STARTED")) {
             //hide label waiting for players
+            waitingForPlayersLabel.setManaged(false);
+            waitingForPlayersLabel.setVisible(false);
         }
         else if (message.contains("MOVE")) {
             switch (message) {
                 case "MOVE OK" -> {
                     MoveBoard.RedrawBoardMove(startPoint, endPoint, board, myColor);
+                    MoveBoard.blockPreviousStartPoint(startPoint);
+                    if (!stepMade) {
+                        stepMade = true;
+                        MoveBoard.ifHopped(endPoint, board);
+                    }
                     startPoint = null;
-                    endPoint = null;
                 }
                 case "MOVE BAD" -> finishTurn = true;
             }
@@ -293,6 +326,7 @@ public class Controller {
                 case "NOT YOUR TURN" -> yourTurn = false;
                 //disable buttons;
                 //if step made and you know the player can`t make more moves
+                //maybe wont be needed
                 case "FINISH TURN" -> finishTurn = true;
             }
         } else if (message.contains("DELETE")) {
@@ -304,15 +338,12 @@ public class Controller {
             SceneContentHandler.SetBoxUnVisible(playGame);
             SceneContentHandler.SetBoxVisible(gameResults);
 
-              switch (message) {
-                  case "YOU WON":
-                      SceneContentHandler.SetLabelVisible(youWonLabel);
-                      break;
-                  case "YOU LOST":
-                      SceneContentHandler.SetLabelVisible(youLostLabel);
-                      //loosing box and disconnection.
-                      break;
-              }
+            switch (message) {
+                case "YOU WON" -> SceneContentHandler.SetLabelVisible(youWonLabel);
+                case "YOU LOST" -> SceneContentHandler.SetLabelVisible(youLostLabel);
+
+                //loosing box and disconnection.
+            }
 
         }
 

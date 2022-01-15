@@ -5,6 +5,6 @@ module com.example.demo {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.chineseCheckers to javafx.fxml;
-    exports com.example.chineseCheckers;
+    opens client to javafx.fxml;
+    exports client;
 }

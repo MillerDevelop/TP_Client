@@ -1,4 +1,4 @@
-package com.example.chineseCheckers;
+package client;
 
 import java.io.*;
 import java.net.ServerSocket;

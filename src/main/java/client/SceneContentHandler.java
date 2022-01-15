@@ -1,4 +1,4 @@
-package com.example.chineseCheckers;
+package client;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -9,11 +9,6 @@ public class SceneContentHandler {
     protected static void SetBoxVisible(VBox box){
         box.setVisible(true);
         box.setManaged(true);
-    }
-
-    protected static void SetBoxVisible(Parent parent){
-        parent.setVisible(true);
-        parent.setManaged(true);
     }
 
     protected static void SetBoxVisible(AnchorPane pane) {

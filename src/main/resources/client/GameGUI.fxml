@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="parentBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" spacing="5.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chineseCheckers.Controller">
+<VBox fx:id="parentBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" spacing="5.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controller">
    <children>
       <Label fx:id="welcomeLabel" alignment="CENTER" managed="true" prefHeight="18.0" prefWidth="609.0" text="Welcome to the game!">
          <font>
@@ -90,7 +90,7 @@
       </VBox>
       <AnchorPane fx:id="playGame" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" style="-fx-background-color: FAF0E6;" visible="false">
          <children>
-            <HBox fx:id="buttonBoardBox" alignment="CENTER" layoutY="759.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="26.0" prefWidth="850.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <HBox fx:id="buttonBoardBox" alignment="CENTER" disable="true" layoutY="759.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="26.0" prefWidth="850.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="SKIP STEP" />
                   <Button mnemonicParsing="false" onMouseClicked="#buttonBoardMouseClicked" text="EXIT" />
@@ -269,6 +269,7 @@
                </children>
             </GridPane>
             <Label fx:id="yourColorLabel" layoutX="21.0" layoutY="17.0" prefHeight="18.0" prefWidth="160.0" text="YOUR COLOR: COLOR" />
+            <Label fx:id="waitingForPlayersLabel" layoutX="664.0" layoutY="17.0" text="WAITING FOR PLAYERS TO JOIN" textFill="#a74343" AnchorPane.leftAnchor="664.0" />
          </children>
       </AnchorPane>
       <VBox fx:id="gameResults" alignment="CENTER" managed="false" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false">
