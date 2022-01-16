@@ -10,28 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="317b095e-a78b-40eb-909b-5892fa24c623" name="Changes" comment="FIXED BUGS, ADDED JAVADOC COMMENTS, TESTS">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/unnamed.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/GameGUI.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/client/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/client/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/client/SceneContentHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/client/SceneContentHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/EmptyBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/EmptyBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/FillBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/FillBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/GameGUI.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/MoveBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/MoveBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/SceneContentHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/SceneContentHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/TestServer$Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/TestServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/client/ClientTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/client/ControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/client/SceneContentHandlerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/client/ClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/client/ClientTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +44,13 @@
       <run-configuration type="JUnit" name="SceneContentHandlerTest.testSetBoxVisible" />
     </enabled-run-configurations>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="23jnVLD1EByo52T1TJxIwag7LbF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -74,10 +64,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TP_Chinese_Checkers-main/ChineseCheckersServer.iml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -198,6 +189,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642256391862</updated>
+      <workItem from="1642364889080" duration="651000" />
     </task>
     <task id="LOCAL-00001" summary="FIXED BUGS">
       <created>1642280512762</created>
@@ -213,8 +205,18 @@
       <option name="project" value="LOCAL" />
       <updated>1642351504074</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="FIXED BUGS, ADDED JAVADOC COMMENTS, TESTS">
+      <created>1642358396591</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1642358396591</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -226,7 +228,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FIXED BUGS" />
