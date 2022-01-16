@@ -1,13 +1,8 @@
 package client;
 
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 

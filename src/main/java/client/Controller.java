@@ -265,6 +265,9 @@ public class Controller {
      */
 
     protected void CheckServerMsg(String message) {
+
+        if (message.equals(null)) return;
+
         System.out.println(message);
         if (message.contains("CREATE")) {
             switch (message) {

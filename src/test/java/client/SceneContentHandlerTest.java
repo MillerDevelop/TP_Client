@@ -1,10 +1,9 @@
 package client;
 
 
-import javafx.scene.control.Label;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

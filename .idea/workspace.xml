@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Project production files" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="317b095e-a78b-40eb-909b-5892fa24c623" name="Changes" comment="FIXED BUGS">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="317b095e-a78b-40eb-909b-5892fa24c623" name="Changes" comment="FIXED BUGS, ADDED JAVADOC COMMENTS, TESTS">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/unnamed.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/CMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/CMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/EmptyBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/EmptyBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/FillBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/FillBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/MoveBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/MoveBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/SceneContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/SceneContentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/TestServer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/GameGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/client/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/client/ControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/client/SceneContentHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/client/SceneContentHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/EmptyBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/EmptyBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/FillBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/FillBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/GameGUI.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/MoveBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/MoveBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/SceneContentHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/SceneContentHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/TestServer$Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/TestServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/client/ClientTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/client/ControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/client/SceneContentHandlerTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,17 +69,19 @@
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../TP_Chinese_Checkers-main/ChineseCheckersServer.iml" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -165,8 +182,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SceneContentHandlerTest.testSetBoxVisible" />
         <item itemvalue="JUnit.ClientTest" />
+        <item itemvalue="JUnit.SceneContentHandlerTest.testSetBoxVisible" />
         <item itemvalue="JUnit.ClientTest.closeEverything" />
         <item itemvalue="JUnit.ControllerTest.testAcceptingServerMsg" />
         <item itemvalue="JUnit.SceneContentHandlerTest" />
@@ -189,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642280512762</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="FIXED BUGS, ADDED JAVADOC COMMENTS, TESTS">
+      <created>1642351504074</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1642351504074</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,18 +226,20 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FIXED BUGS" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIXED BUGS" />
+    <MESSAGE value="FIXED BUGS, ADDED JAVADOC COMMENTS, TESTS" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIXED BUGS, ADDED JAVADOC COMMENTS, TESTS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/client/ControllerTest.java</url>
-          <line>18</line>
-          <properties class="client.ControllerTest" method="testisConnected">
+          <line>13</line>
+          <properties class="client.ControllerTest" method="testIsConnected">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="1" />

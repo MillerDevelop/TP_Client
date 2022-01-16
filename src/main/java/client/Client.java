@@ -3,11 +3,20 @@ package client;
 import java.io.*;
 import java.net.Socket;
 
+/** Class responsible for Client-Server connection */
+
 public class Client {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private Controller controller;
+
+    /** Constructor that fills the class`s controller, buffered reader and buffered writer, as well as socket.
+     * Starts the thread receiving server messages.
+     *
+     * @param socket socket passed from controller.
+     * @param controller an instance of the controller running at the moment from controller.
+     */
 
     protected Client(Socket socket, Controller controller) {
         try{
@@ -28,6 +37,11 @@ public class Client {
 
     }
 
+    /** Method to send messages to server
+     *
+     * @param message message that will be sent from client
+     */
+
     protected void sendMessageToServer(String message) {
         try {
             bufferedWriter.write(message);
@@ -39,6 +53,8 @@ public class Client {
             e.printStackTrace();
         }
     }
+
+    /** Method that runs a new thread to continuously wait for the messages to be recieved from server until the connection shuts */
 
     protected void recieveMessageFromServer(){
             new Thread (() -> {
@@ -52,6 +68,8 @@ public class Client {
                 }
             }).start();
     }
+
+    /** Method closes socket, buffered reader and buffered writer to disconnect from server */
 
     protected void CloseEverything(){
         try {
@@ -71,9 +89,22 @@ public class Client {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method for testing. Returns the information whether the socket is closed.
+     *
+     * @return if socket is closed.
+     */
+
     protected boolean GetSocketClosed(){
         return socket.isClosed();
     }
+
+    /**
+     * Method for testing. Returns information whether the buffered reader is closed.
+     *
+     * @return if buffered reader closed.
+     */
 
     protected boolean GetReaderClosed() {
         try {
@@ -83,6 +114,12 @@ public class Client {
         }
         return false;
     }
+
+    /**
+     * Method for testing. Returns information whether the buffered writer is closed.
+     *
+     * @return if buffered writer closed.
+     */
 
     protected boolean GetWriterClosed() {
         try {
