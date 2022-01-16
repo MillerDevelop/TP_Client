@@ -71,5 +71,26 @@ public class Client {
             e.printStackTrace();
         }
     }
+    protected boolean GetSocketClosed(){
+        return socket.isClosed();
+    }
+
+    protected boolean GetReaderClosed() {
+        try {
+            bufferedReader.ready();
+        } catch (IOException e) {
+            return true;
+        }
+        return false;
+    }
+
+    protected boolean GetWriterClosed() {
+        try {
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            return true;
+        }
+        return false;
+    }
 
 }

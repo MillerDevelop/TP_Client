@@ -6,6 +6,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+/** The class regulates all about the board moves */
+
 public class MoveBoard {
 
     private static double startPointX, startPointY;
@@ -17,13 +19,29 @@ public class MoveBoard {
     private static boolean hopped = false;
     private static Point2D tempPoint;
 
+    /** When hopped is true that means that the point made a hop and cannot make regular moves anymore.
+     * Method makes possible to reset hopped when the player finishes his move, so he can make ordinary moves.
+      */
+
     protected static void setHoppedFalse() {
         hopped = false;
     }
 
+    /**
+     * Temporary point blocks the ability to go back to the previous step in this turn.
+     * Method gives the ability to clear the point after the turn is finished.
+     */
+
     protected static void setTempPointNull() {
         tempPoint = null;
     }
+
+    /** The method checks if the hop was made by comparing starting and ending point on the board.
+     *  If the hop was made makes @param hopped true. You cannot set hopped true by yourself.
+     *
+     * @param endPoint the point for comparing with the X and Y of the starting point stored inside the class.
+     * @param pane game board
+     */
 
     protected static void ifHopped(Point2D endPoint, GridPane pane) {
         for (int i = 0; i < 6; i++) {
@@ -41,11 +59,25 @@ public class MoveBoard {
         }
     }
 
+    /**
+     * Method that accepts the start point of the previous move and stores it to block making a step back in your turn.
+     *
+     * @param prevPoint previous start point
+     */
+
     protected static void blockPreviousStartPoint(Point2D prevPoint) {
         tempPoint = prevPoint;
     }
 
-    protected static void ShowAllAvailibleMoves(Point2D startPoint, GridPane pane) {
+    /**
+     * Method shows available moves for the point clicked if it is of your color and it is your turn.
+     * After you make a step shows available steps only for the point chosen in the first step and only if it was a hop.
+     *
+     * @param startPoint the point that was clicked.
+     * @param pane game board
+     */
+
+    protected static void ShowAllAvailableMoves(Point2D startPoint, GridPane pane) {
 
 
             startPointX = startPoint.getX();
@@ -63,6 +95,9 @@ public class MoveBoard {
                                 circle.setStrokeWidth(2);
                             }
                         } else {
+
+                            /* Checking if the hops are availible when the point nearby is not. */
+
                             if (Ymove[i] != 0) {
                                 for (Node hop : pane.getChildren()) {
                                     if (GridPane.getColumnIndex(hop) == (startPointX + (2 * Xmove[i])) && GridPane.getRowIndex(hop) == (startPointY + (2 * Ymove[i]))) {
@@ -108,6 +143,11 @@ public class MoveBoard {
             }
     }
 
+    /**
+     * Hides previous available moves when the other point is chosen or the step is made and turn finished.
+     *
+     * @param pane game board.
+     */
 
     protected static void HidePreviousAvailibleMoves(GridPane pane) {
 
@@ -144,6 +184,14 @@ public class MoveBoard {
             }
         }
     }
+
+    /** When the points are approved by the server the start point is redrawn to be available for moves and the end point is set to the player`s color.
+     *
+     * @param startPoint move`s start point.
+     * @param endPoint move`s endpoint.
+     * @param pane game board.
+     * @param playerColor the color of the player whose move it is.
+     */
 
     protected static void RedrawBoardMove(Point2D startPoint, Point2D endPoint, GridPane pane, Color playerColor) {
 

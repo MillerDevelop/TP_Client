@@ -5,6 +5,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+/** Fills the board depending on the color sent by server */
+
 public class FillBoard {
 
     private static int endpoint;
@@ -12,6 +14,13 @@ public class FillBoard {
     private static int y;
     private static int x;
     private static Circle circle;
+
+    /**
+     * Accepts the color and board and depending on the color runs the corresponding methods
+     *
+     * @param color defines the color of points and its situation.
+     * @param pane game board
+     */
 
     protected static void FillColor(String color, GridPane pane) {
         switch (color) {
@@ -23,6 +32,12 @@ public class FillBoard {
             case "GREEN" -> fillGreen(pane);
         }
     }
+
+    /**
+     * Fills part of the board for the color yellow.
+     *
+     * @param pane game board
+     */
 
     private static void fillYellow(GridPane pane) {
 
@@ -44,6 +59,12 @@ public class FillBoard {
 
     }
 
+    /**
+     * Fills part of the board for the color red.
+     *
+     * @param pane game board
+     */
+
     private static void fillRed(GridPane pane) {
 
         startpoint = 12;
@@ -63,6 +84,12 @@ public class FillBoard {
         }
 
     }
+
+    /**
+     * Fills part of the board for the color white.
+     *
+     * @param pane game board
+     */
 
     private static void fillWhite(GridPane pane) {
 
@@ -84,7 +111,13 @@ public class FillBoard {
         }
 
     }
-//finish
+
+    /**
+     * Fills part of the board for the color black.
+     *
+     * @param pane game board
+     */
+
     private static void fillBlack(GridPane pane) {
 
         startpoint = 18;
@@ -105,6 +138,12 @@ public class FillBoard {
         }
     }
 
+    /**
+     * Fills part of the board for the color blue.
+     *
+     * @param pane game board
+     */
+
     private static void fillBlue(GridPane pane) {
 
         startpoint = 21;
@@ -124,6 +163,12 @@ public class FillBoard {
             endpoint +=1;
         }
     }
+
+    /**
+     * Fills part of the board for the color green.
+     *
+     * @param pane game board
+     */
 
     private static void fillGreen(GridPane pane) {
 
